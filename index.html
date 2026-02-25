@@ -8,49 +8,63 @@
 </head>
 <body>
 
-  <div class="chat-container">
-    <h1>ManasviGPT</h1>
-    <p class="description">Get to know Manasvi more!</p>
+  <div class="wrapper">
+    <div class="card">
 
-    <div class="prompt-buttons">
-      <button onclick="sendPrompt('What is Manasvi studying?')">What is Manasvi studying?</button>
-      <button onclick="sendPrompt('What are her hobbies and interests?')">What are her hobbies and interests?</button>
-      <button onclick="sendPrompt('What is her professional background?')">What is her professional background?</button>
-    </div>
+      <div class="header">
+        <h1>ManasviGPT</h1>
+        <p>Get to know Manasvi more</p>
+      </div>
 
-    <div class="chat-box" id="chatBox">
-      <!-- Chat messages will appear here -->
-    </div>
+      <div class="prompts">
+        <button onclick="sendPrompt('What is Manasvi studying?')">
+          What is Manasvi studying?
+        </button>
+        <button onclick="sendPrompt('What are her hobbies and interests?')">
+          What are her hobbies and interests?
+        </button>
+        <button onclick="sendPrompt('What is her professional background?')">
+          What is her professional background?
+        </button>
+      </div>
 
-    <div class="input-area">
-      <input type="text" id="userInput" placeholder="Type your question here...">
-      <button onclick="sendMessage()">Send</button>
+      <div class="chat-box" id="chatBox"></div>
+
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="Ask something thoughtful..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+
     </div>
   </div>
 
   <script>
-    const chatBox = document.getElementById('chatBox');
+    const chatBox = document.getElementById("chatBox");
 
     function sendPrompt(text) {
-      document.getElementById('userInput').value = text;
+      document.getElementById("userInput").value = text;
       sendMessage();
     }
 
     function sendMessage() {
-      const input = document.getElementById('userInput');
+      const input = document.getElementById("userInput");
       const message = input.value.trim();
       if (!message) return;
 
-      // Display user message
-      chatBox.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
+      appendMessage("You", message);
+      input.value = "";
 
-      // Dummy AI response (replace with backend API call)
+      // Placeholder response (backend not connected yet)
       setTimeout(() => {
-        chatBox.innerHTML += `<div><strong>ManasviGPT:</strong> This is a response to "${message}".</div>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }, 500);
+        appendMessage("ManasviGPT", "This is a placeholder response.");
+      }, 600);
+    }
 
-      input.value = '';
+    function appendMessage(sender, text) {
+      const message = document.createElement("div");
+      message.className = "message";
+      message.innerHTML = `<strong>${sender}:</strong> ${text}`;
+      chatBox.appendChild(message);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
