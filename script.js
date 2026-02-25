@@ -1,42 +1,41 @@
-const chatContainer = document.getElementById("chat-container");
-const input = document.getElementById("user-input");
-const button = document.getElementById("send-btn");
+const chatMessages = document.getElementById("chatMessages");
+const userInput = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
 
-const BACKEND_URL = "http://15.134.230.129:5000/chat";
-
-function addMessage(text, sender) {
-  const message = document.createElement("div");
-  message.classList.add("message", sender);
-  message.innerText = text;
-  chatContainer.appendChild(message);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
+function appendMessage(sender, text) {
+  const msg = document.createElement("div");
+  msg.classList.add("message", sender);
+  msg.innerText = text;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-async function sendMessage() {
-  const userText = input.value.trim();
-  if (!userText) return;
+function sendMessage() {
+  const text = userInput.value.trim();
+  if (!text) return;
 
-  addMessage(userText, "user");
-  input.value = "";
+  appendMessage("user", text);
+  userInput.value = "";
 
-  try {
-    const response = await fetch(BACKEND_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ question: userText })
-    });
+  // Placeholder while backend isn't connected
+  setTimeout(() => {
+    appendMessage("bot", "Thinking…");
+  }, 150);
 
-    const data = await response.json();
-    addMessage(data.answer || "No response.", "bot");
-
-  } catch (error) {
-    addMessage("Error connecting to server.", "bot");
-  }
+  // TODO: replace with actual API call when connected
+  /*  
+  fetch(BACKEND_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question: text })
+  })
+    .then(res => res.json())
+    .then(data => appendMessage("bot", data.answer))
+    .catch(err => appendMessage("bot", "Error loading response"))
+  */
 }
 
-button.addEventListener("click", sendMessage);
-input.addEventListener("keypress", (e) => {
+sendBtn.addEventListener("click", sendMessage);
+userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
 });

@@ -1,73 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ManasviGPT</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="wrapper">
-    <div class="card">
+<div class="app-wrapper">
+  <div class="chat-app">
 
-      <div class="header">
-        <h1>ManasviGPT</h1>
-        <p>Get to know Manasvi more</p>
-      </div>
+    <header class="chat-header">
+      <h1>ManasviGPT</h1>
+      <p>Get to know Manasvi more — Ask a question</p>
+    </header>
 
-      <div class="prompts">
-        <button onclick="sendPrompt('What is Manasvi studying?')">
-          What is Manasvi studying?
-        </button>
-        <button onclick="sendPrompt('What are her hobbies and interests?')">
-          What are her hobbies and interests?
-        </button>
-        <button onclick="sendPrompt('What is her professional background?')">
-          What is her professional background?
-        </button>
-      </div>
+    <div id="chatMessages" class="chat-messages"></div>
 
-      <div class="chat-box" id="chatBox"></div>
-
-      <div class="input-area">
-        <input type="text" id="userInput" placeholder="Ask something thoughtful..." />
-        <button onclick="sendMessage()">Send</button>
-      </div>
-
+    <div class="input-bar">
+      <label class="attach-btn">
+        📎
+        <input type="file" id="fileUpload" hidden>
+      </label>
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button id="sendBtn">Send</button>
     </div>
+
   </div>
+</div>
 
-  <script>
-    const chatBox = document.getElementById("chatBox");
-
-    function sendPrompt(text) {
-      document.getElementById("userInput").value = text;
-      sendMessage();
-    }
-
-    function sendMessage() {
-      const input = document.getElementById("userInput");
-      const message = input.value.trim();
-      if (!message) return;
-
-      appendMessage("You", message);
-      input.value = "";
-
-      // Placeholder response (backend not connected yet)
-      setTimeout(() => {
-        appendMessage("ManasviGPT", "This is a placeholder response.");
-      }, 600);
-    }
-
-    function appendMessage(sender, text) {
-      const message = document.createElement("div");
-      message.className = "message";
-      message.innerHTML = `<strong>${sender}:</strong> ${text}`;
-      chatBox.appendChild(message);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-  </script>
-
+<script src="script.js"></script>
 </body>
 </html>
