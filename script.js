@@ -1,41 +1,24 @@
-const chatMessages = document.getElementById("chatMessages");
-const userInput = document.getElementById("userInput");
-const sendBtn = document.getElementById("sendBtn");
-
-function appendMessage(sender, text) {
+function appendMessage(text, sender) {
   const msg = document.createElement("div");
   msg.classList.add("message", sender);
   msg.innerText = text;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  document.getElementById("chatMessages").appendChild(msg);
 }
 
 function sendMessage() {
-  const text = userInput.value.trim();
+  const input = document.getElementById("userInput");
+  const text = input.value.trim();
   if (!text) return;
 
-  appendMessage("user", text);
-  userInput.value = "";
+  appendMessage(text, "user");
+  input.value = "";
 
-  // Placeholder while backend isn't connected
   setTimeout(() => {
-    appendMessage("bot", "Thinking…");
-  }, 150);
-
-  // TODO: replace with actual API call when connected
-  /*  
-  fetch(BACKEND_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question: text })
-  })
-    .then(res => res.json())
-    .then(data => appendMessage("bot", data.answer))
-    .catch(err => appendMessage("bot", "Error loading response"))
-  */
+    appendMessage("This will connect to your backend soon.", "bot");
+  }, 600);
 }
 
-sendBtn.addEventListener("click", sendMessage);
-userInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
-});
+function askPrompt(question) {
+  document.getElementById("userInput").value = question;
+  sendMessage();
+}

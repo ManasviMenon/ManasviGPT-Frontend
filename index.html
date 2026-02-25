@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>ManasviGPT</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="app-wrapper">
-  <div class="chat-app">
+<div class="background-blobs"></div>
 
-    <header class="chat-header">
-      <h1>ManasviGPT</h1>
-      <p>Get to know Manasvi more — Ask a question</p>
-    </header>
+<div class="phone-container">
 
-    <div id="chatMessages" class="chat-messages"></div>
-
-    <div class="input-bar">
-      <label class="attach-btn">
-        📎
-        <input type="file" id="fileUpload" hidden>
-      </label>
-      <input type="text" id="userInput" placeholder="Type your message..." />
-      <button id="sendBtn">Send</button>
+    <div class="header">
+        <h2>Get to know Manasvi more</h2>
+        <p>Ask a question</p>
     </div>
 
-  </div>
+    <div class="ai-orb">
+        <div class="eyes"></div>
+    </div>
+
+    <div class="quick-actions">
+        <button onclick="askPrompt('What is Manasvi studying?')">What is she studying?</button>
+        <button onclick="askPrompt('What are her hobbies and interests?')">Her hobbies</button>
+        <button onclick="askPrompt('What is her professional background?')">Professional background</button>
+    </div>
+
+    <div id="chatMessages" class="chat-area"></div>
+
+    <div class="input-area">
+        <label class="attach">
+            +
+            <input type="file" hidden>
+        </label>
+        <input type="text" id="userInput" placeholder="Ask me anything..." />
+        <button onclick="sendMessage()">➤</button>
+    </div>
+
 </div>
 
 <script src="script.js"></script>
