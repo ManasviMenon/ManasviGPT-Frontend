@@ -12,31 +12,37 @@
 
 <div class="phone-container">
 
-    <div class="header">
-        <h2>Get to know Manasvi more</h2>
-        <p>Ask a question</p>
-    </div>
+  <div class="header">
+    <h2>Get to know Manasvi</h2>
+    <p>Ask a question</p>
+  </div>
 
-    <div class="ai-orb">
-        <div class="eyes"></div>
-    </div>
+  <div class="ai-orb">
+    <div class="eyes"></div>
+  </div>
 
-    <div class="quick-actions">
-        <button onclick="askPrompt('What is Manasvi studying?')">What is she studying?</button>
-        <button onclick="askPrompt('What are her hobbies and interests?')">Her hobbies</button>
-        <button onclick="askPrompt('What is her professional background?')">Professional background</button>
-    </div>
+  <!-- PROMPT QUESTIONS (VISIBLE + PROPERLY SPACED) -->
+  <div class="quick-actions">
+    <button onclick="askPrompt('What is Manasvi studying?')">
+      What is Manasvi studying?
+    </button>
 
-    <div id="chatMessages" class="chat-area"></div>
+    <button onclick="askPrompt('What are her hobbies and interests?')">
+      What are her hobbies and interests?
+    </button>
 
-    <div class="input-area">
-        <label class="attach">
-            +
-            <input type="file" hidden>
-        </label>
-        <input type="text" id="userInput" placeholder="Ask me anything..." />
-        <button onclick="sendMessage()">➤</button>
-    </div>
+    <button onclick="askPrompt('What is her professional background?')">
+      What is her professional background?
+    </button>
+  </div>
+
+  <div id="chatMessages" class="chat-area"></div>
+
+  <div class="input-area">
+    <div class="attach">+</div>
+    <input type="text" id="userInput" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">➤</button>
+  </div>
 
 </div>
 

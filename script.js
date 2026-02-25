@@ -14,7 +14,7 @@ function sendMessage() {
   input.value = "";
 
   setTimeout(() => {
-    appendMessage("This will connect to your backend soon.", "bot");
+    appendMessage("Backend connection coming next.", "bot");
   }, 600);
 }
 
