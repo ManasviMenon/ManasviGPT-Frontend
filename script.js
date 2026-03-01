@@ -13,19 +13,25 @@ function appendMessage(text, sender) {
 }
 
 async function callBackend(userText) {
+  console.log("Calling API:", API_URL, "question:", userText);
+
   const res = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ question: userText })
   });
 
-  // If backend returns an error, show raw text for debugging
+  console.log("Status:", res.status);
+
   if (!res.ok) {
     const text = await res.text();
+    console.log("Error body:", text);
     throw new Error(`HTTP ${res.status}: ${text}`);
   }
 
   const data = await res.json();
+  console.log("JSON:", data);
+
   return data.answer;
 }
 
